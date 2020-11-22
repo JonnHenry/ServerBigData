@@ -1,7 +1,7 @@
 import { Document } from "mongoose";
 
 export default interface IAiroport extends Document{
-    Year: String;
+    Year: Number;
     Month: Number;
     DayofMonth: Number;
     DayofWeek: Number;

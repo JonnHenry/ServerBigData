@@ -11,7 +11,7 @@ export default class Server {
     }
 
     startServer(){
-        this.app.listen(  this.port, ()=>{
+        this.app.listen( this.port, ()=>{
             console.log(`Servidor funcionando en el puerto ${this.port}`)
         });
     }

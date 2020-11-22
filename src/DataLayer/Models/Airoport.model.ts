@@ -1,11 +1,10 @@
 import { Schema, model} from 'mongoose';
 import IAiroport from "../../Interfaces/Airoport";
 
-
 const AiroportSchema = new Schema({
     Year: {
-        type: String,
-        required: [ true, 'El año es necesario.' ]
+        type: Number,
+        required: [ true, 'El año es necesario para el registro.' ]
     },
     Month: {
         type: Number,
@@ -21,7 +20,7 @@ const AiroportSchema = new Schema({
     },
     DeepTime: {
         type: Number,
-        required: [ true, 'Es necesarios la hora real de la salida.' ]
+        required: [ true, 'Es necesario la hora real de la salida.' ]
     },
     CRSDepTime: {
         type: Number,
@@ -120,7 +119,5 @@ const AiroportSchema = new Schema({
         default: 0
     }
 });
-
-
 
 export const Airoport = model<IAiroport>('Airoport',AiroportSchema)
