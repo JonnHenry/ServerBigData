@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import * as dotenv from "dotenv";
 import Server from "./BussinesLayer/Server";
 import DataBase from './DataLayer/ConnectionDB'
-
+import airoportRoutes from "./BussinesLayer/Routes/index";
 
 dotenv.config();
 
@@ -11,6 +11,7 @@ const server = new Server(Number(process.env.PORT));
 server.app.use(cors());
 server.app.use(bodyParser.urlencoded({ extended: true }));
 server.app.use(bodyParser.json());
+server.app.use('/airoport',airoportRoutes);
 
 const database = new DataBase(Number(process.env.DB_PORT) || 0, process.env.DB_USER || '', process.env.DB_PASS || '', process.env.DB_HOST || '');
 database.conectarDB()

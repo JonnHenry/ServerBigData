@@ -118,6 +118,7 @@ const AiroportSchema = new Schema({
         type: Number,
         default: 0
     }
+},{
+    collection: 'data'
 });
-
 export const Airoport = model<IAiroport>('Airoport',AiroportSchema)

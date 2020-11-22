@@ -6,14 +6,12 @@ const airoportRoutes = Router();
 airoportRoutes.get('/all', async (req: Request, res: Response) => {
 
     try {
-        const airoportData = await Airoport.find()
-            .sort({ Year: 'asc' })
-            .exec();
+        const airoportData = await Airoport.find({ Year: 2007 }).exec();
 
         res.status(200).json({
             ok: true,
             airoportData,
-            mensaje: 'OK'
+            mensaje: 'Todos los datos'
         })
     } catch (error) {
         res.status(500).json({

@@ -19,7 +19,7 @@ export default class DataBase {
 
         return new Promise(async (resolve, reject) => {
             try {
-                await moongose.connect('mongodb://localhost:27017/Big_Data', { useNewUrlParser: true, useUnifiedTopology: true })
+                await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
                 resolve(true)
             }catch{
                 reject(false)
