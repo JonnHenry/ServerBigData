@@ -4,8 +4,8 @@ export default interface IAiroport extends Document{
     Year: Number;
     Month: Number;
     DayofMonth: Number;
-    DayofWeek: Number;
-    DeepTime: Number;
+    DayOfWeek: Number;
+    DepTime: Number;
     CRSDepTime: Number;
     ArrTime: Number;
     CRSArrTime: Number;

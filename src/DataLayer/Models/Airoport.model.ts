@@ -14,11 +14,11 @@ const AiroportSchema = new Schema({
         type: Number,
         required: [ true, 'El dia del mes es necesario.' ]
     },
-    DayofWeek: {
+    DayOfWeek: {
         type: Number,
         required: [ true, 'El dia de la semana es necesario' ]
     },
-    DeepTime: {
+    DepTime: {
         type: Number,
         required: [ true, 'Es necesario la hora real de la salida.' ]
     },

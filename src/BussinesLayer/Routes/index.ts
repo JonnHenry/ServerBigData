@@ -1,12 +1,30 @@
 import { Router, Request, Response } from 'express';
-import {Airoport} from '../../DataLayer/Models/Airoport.model';
+import { Airoport } from '../../DataLayer/Models/Airoport.model';
 
-const airoportRoutes = Router();
+const flightsRoutes = Router();
 
-airoportRoutes.get('/all', async (req: Request, res: Response) => {
+/*
+Body of a request
+{
+    page:number;
+    Year: number;
+}
+*/
+
+flightsRoutes.get('/all', async (req: Request, res: Response) => {
 
     try {
-        const airoportData = await Airoport.find({ Year: 2007 }).exec();
+        const bodyRequest = await req.body;
+
+        const airoportData = await Airoport.find(
+            {
+                Year: bodyRequest.year
+            },
+            null,
+            {
+                skip: (bodyRequest.page - 1) * 1000,
+                limit: 1000
+            }).exec();
 
         res.status(200).json({
             ok: true,
@@ -19,10 +37,40 @@ airoportRoutes.get('/all', async (req: Request, res: Response) => {
             clases: [],
             mensaje: 'Error al ejecutar la consulta'
         })
-
     }
-
 });
+
+
+
+flightsRoutes.post('/create', (req: Request, res: Response) => {
+    const airoportCreate = req.body;
+    console.log(airoportCreate)
+
+    Airoport.create(airoportCreate).then(airoport => {
+
+        res.status(200).json({
+            ok: true,
+            airoport,
+            mensaje: 'El vuelo se ha registrado correctamente'
+        })
+    })
+
+        .catch(err => {
+            res.status(200).json({
+                ok: false,
+                clase: err,
+                mensaje: 'Verifique la información ingresada'
+            })
+        })
+})
+
+
+
+
+
+
+
+
 
 /*
 
@@ -179,4 +227,4 @@ claseRoutes.get('/get/video/:video', (req: Request, res: any) => {
 })
 
 */
-export default airoportRoutes;
+export default flightsRoutes;
