@@ -3,35 +3,35 @@ import IAiroport from "../../Interfaces/Airoport";
 
 const AiroportSchema = new Schema({
     Year: {
-        type: Number,
+        type: String,
         required: [ true, 'El año es necesario para el registro.' ]
     },
     Month: {
-        type: Number,
+        type: String,
         required: [ true, 'El mes es necesario.' ]
     },
     DayofMonth: {
-        type: Number,
+        type: String,
         required: [ true, 'El dia del mes es necesario.' ]
     },
     DayOfWeek: {
-        type: Number,
+        type: String,
         required: [ true, 'El dia de la semana es necesario' ]
     },
     DepTime: {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesario la hora real de la salida.' ]
     },
     CRSDepTime: {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesario la hora de salida programada.' ]
     },
     ArrTime: {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesarios la hora real de la llegada.' ]
     },
     CRSArrTime:  {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesarios la hora programada de la llegada.' ]
     },
     UniqueCarrier:  {
@@ -39,7 +39,7 @@ const AiroportSchema = new Schema({
         required: [ true, 'Es necesario registrar el código de la aerolínea.' ]
     },
     FlightNum: {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesario registrar el número de vuelo.' ]
     },
     TailNum: {
@@ -47,23 +47,23 @@ const AiroportSchema = new Schema({
         required: [ true, 'Es necesario registrar el número de la cola del avión.' ]
     },
     ActualElapsedTime: {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesario registrar el tiempo transcurrido.' ]
     },
     CRSElapsedTime: {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesario registrar el tiempo transcurrido desde la reserva.' ]
     },
     AirTime:  {
-        type: Number,
+        type: String,
         required: [ true, 'Es necesario registrar el tiempo de vuelo.' ]
     },
     ArrDelay: {
-        type: Number,
+        type: String,
         required: [ true, 'Tiempo de retraso en la llegada.' ]
     },
     DepDelay: {
-        type: Number,
+        type: String,
         required: [ true, 'Tiempo de retraso en la salida.' ]
     },
     Origin: {
@@ -75,19 +75,19 @@ const AiroportSchema = new Schema({
         required: [ true, 'Es destino del vuelo es necesario.' ]
     },
     Distance: {
-        type: Number,
+        type: String,
         required: [ true, 'La distancia del vuelo en miles es necesaria.' ]
     },
     TaxiIn:{
-        type: Number,
+        type: String,
         required: [ true, 'Tiempo en llegar el taxi.' ]
     },
     TaxiOut: {
-        type: Number,
+        type: String,
         required: [ true, 'Tiempo de salida del taxi.' ]
     },
     Cancelled:  {
-        type: Number,
+        type: String,
         default: 0
     },
     CancellationCode:  {
@@ -95,30 +95,30 @@ const AiroportSchema = new Schema({
         default: "",
     },
     Diverted:  {
-        type: Number,
+        type: String,
         default: 0
     },
     CarrierDelay: {
-        type: Number,
+        type: String,
         default: 0
     },
     WeatherDelay: {
-        type: Number,
+        type: String,
         default: 0
     },
     NASDelay: {
-        type: Number,
+        type: String,
         default: 0
     },
     SecurityDelay: {
-        type: Number,
+        type: String,
         default: 0
     },
     LateAircraftDelay: {
-        type: Number,
+        type: String,
         default: 0
     }
 },{
-    collection: 'data'
+    collection: 'years-data'
 });
 export const Airoport = model<IAiroport>('Airoport',AiroportSchema)

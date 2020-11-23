@@ -15,7 +15,7 @@ export default class DataBase {
     }
 
     conectarDB() {
-        const uri = `mongodb://${this.user}:${this.password}@${this.hostDB}:${this.port}/Big_Data`;
+        const uri = `mongodb+srv://AAaP5Fe2sJsUuhjx:h9yIOYGFbMwzKRnx@clusterp2bd.7qro4.mongodb.net/P2BD`;
 
         return new Promise(async (resolve, reject) => {
             try {
