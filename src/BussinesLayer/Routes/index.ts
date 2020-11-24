@@ -16,9 +16,7 @@ flightsRoutes.get('/all', async (req: Request, res: Response) => {
     try {
         const bodyRequest = req.body;
         const airoportData = await Airoport.find(
-            {
-                Year: bodyRequest.year
-            },
+            {},
             null,
             {
                 skip: (bodyRequest.page - 1) * 1000,
