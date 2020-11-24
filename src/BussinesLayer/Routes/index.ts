@@ -11,15 +11,15 @@ Body of a request
 }
 */
 
-flightsRoutes.get('/all', async (req: Request, res: Response) => {
+flightsRoutes.get('/all/:id', async (req: Request, res: Response) => {
 
     try {
-        const bodyRequest = req.body;
+        const page = Number(req.params.id);
         const airoportData = await Airoport.find(
             {},
             null,
             {
-                skip: (bodyRequest.page - 1) * 1000,
+                skip: (page - 1) * 1000,
                 limit: 1000
             }).exec();
 
