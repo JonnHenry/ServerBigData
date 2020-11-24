@@ -34,7 +34,6 @@ flightsRoutes.get('/all/:page', async (req: Request, res: Response) => {
                     numData: count
                 })
             }
-
         });
 
         
