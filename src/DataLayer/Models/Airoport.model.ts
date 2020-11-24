@@ -88,7 +88,7 @@ const AiroportSchema = new Schema({
     },
     Cancelled:  {
         type: String,
-        default: 0
+        default: '0'
     },
     CancellationCode:  {
         type: String,
@@ -96,27 +96,27 @@ const AiroportSchema = new Schema({
     },
     Diverted:  {
         type: String,
-        default: 0
+        default: '0'
     },
     CarrierDelay: {
         type: String,
-        default: 0
+        default: '0'
     },
     WeatherDelay: {
         type: String,
-        default: 0
+        default: '0'
     },
     NASDelay: {
         type: String,
-        default: 0
+        default: '0'
     },
     SecurityDelay: {
         type: String,
-        default: 0
+        default: '0'
     },
     LateAircraftDelay: {
         type: String,
-        default: 0
+        default: '0'
     }
 },{
     collection: 'years-data'

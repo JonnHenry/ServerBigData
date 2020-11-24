@@ -11,29 +11,72 @@ Body of a request
 }
 */
 
-flightsRoutes.get('/all/:id', async (req: Request, res: Response) => {
+flightsRoutes.get('/all/:page', async (req: Request, res: Response) => {
 
+
+    //TODO: Cambiar el coolection count; 
     try {
-        const page = Number(req.params.id);
+        const page = Number(req.params.page);
         const airoportData = await Airoport.find(
             {},
             null,
             {
-                skip: (page - 1) * 1000,
-                limit: 1000
-            }).exec();
+                skip: (page) * 500,
+                limit: 500
+            }).select('_id Month DayofMonth DayOfWeek FlightNum').exec();
 
-        res.status(200).json({
-            ok: true,
-            airoportData
-        })
+        await Airoport.count({},function(err,count){
+            if (!err){
+                res.status(200).json({
+                    ok: true,
+                    airoportData,
+                    numpages: Math.ceil(count/1000),
+                    numData: count
+                })
+            }
+
+        });
+
+        
     } catch (error) {
         res.status(500).json({
-            ok: true,
+            ok: false,
             clases: []
         })
     }
 });
+
+
+flightsRoutes.get('/data/:_id', async (req: Request, res: Response) => {
+
+    try {
+        const id = req.params._id;
+        const fligthData = await Airoport.find(
+            {_id: id},
+            null,
+            {
+            }).exec();
+
+            res.status(200).json({
+                ok: true,
+                fligthData,
+                
+            })
+
+        
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            fligthData: []
+        })
+    }
+});
+
+
+
+
+
+
 
 
 
