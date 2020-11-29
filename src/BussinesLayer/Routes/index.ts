@@ -21,22 +21,27 @@ flightsRoutes.get('/all/:page', async (req: Request, res: Response) => {
             {},
             null,
             {
-                skip: (page) * 500,
-                limit: 500
+                skip: (page) * 1000,
+                limit: 1000
             }).select('_id Month DayofMonth DayOfWeek FlightNum').exec();
 
-        await Airoport.count({},function(err,count){
-            if (!err){
+        await Airoport.count({}, function (err, count) {
+            if (!err) {
                 res.status(200).json({
                     ok: true,
                     airoportData,
-                    numpages: Math.ceil(count/1000),
+                    numpages: Math.ceil(count / 1000),
                     numData: count
+                })
+            }else{
+                res.status(500).json({
+                    ok: false,
+                    clases: []
                 })
             }
         });
 
-        
+
     } catch (error) {
         res.status(500).json({
             ok: false,
@@ -51,18 +56,17 @@ flightsRoutes.get('/data/:_id', async (req: Request, res: Response) => {
     try {
         const id = req.params._id;
         const fligthData = await Airoport.find(
-            {_id: id},
-            null,
+            { _id: id },
+            {},
             {
             }).exec();
 
-            res.status(200).json({
-                ok: true,
-                fligthData,
-                
-            })
+        res.status(200).json({
+            ok: true,
+            fligthData
+        })
 
-        
+
     } catch (error) {
         res.status(500).json({
             ok: false,
@@ -70,13 +74,6 @@ flightsRoutes.get('/data/:_id', async (req: Request, res: Response) => {
         })
     }
 });
-
-
-
-
-
-
-
 
 
 flightsRoutes.post('/create', (req: Request, res: Response) => {
@@ -104,6 +101,8 @@ flightsRoutes.post('/create', (req: Request, res: Response) => {
 })
 
 
+
+
 //The structure of the object is used to update and thir _id 
 flightsRoutes.put('/update/:_id', (req: Request, res: Response) => {
     try {
@@ -125,7 +124,6 @@ flightsRoutes.put('/update/:_id', (req: Request, res: Response) => {
 
     }
 });
-
 
 
 
