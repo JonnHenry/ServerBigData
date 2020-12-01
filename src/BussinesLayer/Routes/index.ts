@@ -13,8 +13,6 @@ Body of a request
 
 flightsRoutes.get('/all/:page', async (req: Request, res: Response) => {
 
-
-    //TODO: Cambiar el coolection count; 
     try {
         const page = Number(req.params.page);
         const airoportData = await Airoport.find(
@@ -25,7 +23,7 @@ flightsRoutes.get('/all/:page', async (req: Request, res: Response) => {
                 limit: 1000
             }).select('_id Month DayofMonth DayOfWeek FlightNum').exec();
 
-        await Airoport.count({}, function (err, count) {
+        await Airoport.countDocuments({}, function (err, count) {
             if (!err) {
                 res.status(200).json({
                     ok: true,
@@ -33,7 +31,7 @@ flightsRoutes.get('/all/:page', async (req: Request, res: Response) => {
                     numpages: Math.ceil(count / 1000),
                     numData: count
                 })
-            }else{
+            } else {
                 res.status(500).json({
                     ok: false,
                     clases: []
@@ -104,12 +102,13 @@ flightsRoutes.post('/create', (req: Request, res: Response) => {
 
 
 //The structure of the object is used to update and thir _id 
-flightsRoutes.put('/update/:_id', (req: Request, res: Response) => {
+flightsRoutes.put('/update/:_id', async (req: Request, res: Response) => {
     try {
+
         const reqFligth = req.body;
         const _id = req.params._id;
 
-        Airoport.update({_id: _id}, { reqFligth }).then(()=>{
+        await Airoport.update({ _id: _id }, { $set: reqFligth }).then((result) => {
             res.status(200).json({
                 ok: true,
                 mensaje: 'Se ha actualizado el registro exitosamente'
