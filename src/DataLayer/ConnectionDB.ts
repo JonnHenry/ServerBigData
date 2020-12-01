@@ -2,20 +2,14 @@ import moongose from 'mongoose';
 
 export default class DataBase {
 
-    private port: number;
-    private user: string;
-    private password: string;
-    private hostDB: string;
+    private connectDB:string;
 
-    constructor(port: number, user: string, password: string, hostDB: string) {
-        this.port = port;
-        this.user = user;
-        this.password = password;
-        this.hostDB = hostDB;
+    constructor(connectDB: string) {
+        this.connectDB = connectDB;
     }
 
     conectarDB() {
-        const uri = `mongodb+srv://AAaP5Fe2sJsUuhjx:h9yIOYGFbMwzKRnx@clusterp2bd.7qro4.mongodb.net/P2BD`;
+        const uri = this.connectDB;
 
         return new Promise(async (resolve, reject) => {
             try {

@@ -16,7 +16,7 @@ server.app.use('/airoport',flightsRoutes);
 server.app.use(compression());
 
 
-const database = new DataBase(Number(process.env.DB_PORT) || 0, process.env.DB_USER || '', process.env.DB_PASS || '', process.env.DB_HOST || '');
+const database = new DataBase(process.env.DB_CONNECTION || "");
 database.conectarDB()
     .then((conexion: any) => {
         if (conexion == true) {
